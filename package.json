@@ -1,0 +1,39 @@
+{
+  "name": "@dasmeta/nodebb-plugin-upload",
+  "version": "0.1.0",
+  "description": "Upload plugin for nodebb (s3, gcs, minio)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dasmeta/nodebb-plugin-upload.git"
+  },
+  "keywords": [
+    "nodebb",
+    "plugin",
+    "uploads",
+    "s3",
+    "aws",
+    "gcs",
+    "google cloud",
+    "minio"
+  ],
+  "author": "Hovhannes Babayan <hovhannes@tutor-platform.com>",
+  "contributors": [],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dasmeta/nodebb-plugin-upload/issues"
+  },
+  "nbbpm": {
+    "compatibility": "^2.*"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.992.0",
+    "uuid": "~8.3.2",
+    "mime": "~2.5.2",
+    "request": "~2.69.0",
+    "gm": "~1.23.1"
+  }
+}
