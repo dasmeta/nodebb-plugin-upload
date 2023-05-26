@@ -36,6 +36,7 @@ export GCS_UPLOAD_PATH="path"
 export MINIO_ACCESS_KEY="your-access-key"
 export MINIO_SECRET_KEY="your-secret-key"
 export MINIO_UPLOAD_BUCKET="your-bucket-name"
+export MINIO_ENDPOINT="host"
 export MINIO_UPLOAD_HOST="host"
 export MINIO_UPLOAD_PATH="path"
 ```
