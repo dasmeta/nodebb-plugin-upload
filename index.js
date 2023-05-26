@@ -58,6 +58,7 @@ function initSettingsFromEnv() {
 				"accessKeyId": process.env.MINIO_ACCESS_KEY ,
 				"secretAccessKey": process.env.MINIO_SECRET_KEY ,
 				"bucket": process.env.MINIO_UPLOAD_BUCKET || undefined,
+				"endpoint": process.env.MINIO_ENDPOINT || "localhost:9000",
 				"host": process.env.MINIO_UPLOAD_HOST || "localhost:9000",
 				"path": process.env.MINIO_UPLOAD_PATH || undefined,
 			}
@@ -143,6 +144,10 @@ function fetchSettings(callback) {
 			if (!newSettings.bucket) {
 				settings.bucket = process.env.MINIO_UPLOAD_BUCKET || "";
 			}
+
+			if (!newSettings.endpoint) {
+				settings.endpoint = process.env.MINIO_ENDPOINT || "";
+			}
 	
 			if (!newSettings.host) {
 				settings.host = process.env.MINIO_UPLOAD_HOST || "";
@@ -154,7 +159,7 @@ function fetchSettings(callback) {
 	
 			if (settings.accessKeyId && settings.secretAccessKey) {
 
-				var urlObj = new URL(!settings.host.startsWith("http") ? "http://" + settings.host : settings.host);
+				var urlObj = new URL(!settings.endpoint.startsWith("http") ? "http://" + settings.endpoint : settings.endpoint);
 				connection = new Minio.Client({
 					useSSL: urlObj.protocol === "https:",
 					accessKey: settings.accessKeyId,
@@ -205,7 +210,7 @@ function getConnection() {
 		}
 
 		if(settings.provider === "minio") {
-			var urlObj = new URL(!settings.host.startsWith("http") ? "http://" + settings.host : settings.host);
+			var urlObj = new URL(!settings.endpoint.startsWith("http") ? "http://" + settings.endpoint : settings.endpoint);
 			connection = new Minio.Client({
 				useSSL: urlObj.protocol === "https:",
 				accessKey: settings.accessKeyId,
@@ -275,6 +280,7 @@ function renderAdmin(req, res) {
 	var data = {
 		provider: settings.provider,
 		bucket: settings.bucket,
+		endpoint: settings.endpoint,
 		host: settings.host,
 		path: settings.path,
 		forumPath: forumPath,
@@ -293,6 +299,7 @@ function prepareSettings(req, res, next) {
 	var newSettings = {
 		provider: data.provider || "s3",
 		bucket: data.bucket || "",
+		endpoint: data.endpoint || "",
 		host: data.host || "",
 		path: data.path || "",
 		region: data.region || ""

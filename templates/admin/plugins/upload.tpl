@@ -23,7 +23,8 @@ export GCS_UPLOAD_PATH="path"
 export MINIO_ACCESS_KEY="your-access-key"
 export MINIO_SECRET_KEY="your-secret-key"
 export MINIO_UPLOAD_BUCKET="your-bucket-name"
-export MINIO_UPLOAD_HOST="host"
+export MINIO_ENDPOINT="endpoint" // api host
+export MINIO_UPLOAD_HOST="host" // host for reading files, usually same as endpoint
 export MINIO_UPLOAD_PATH="path"
 
 </code></pre>
@@ -49,6 +50,12 @@ export MINIO_UPLOAD_PATH="path"
 	<label for="bucket">Bucket</label><br/>
 	<input type="text" id="bucket" name="bucket" value="{bucket}" title="Bucket" class="form-control input-lg"
 	       placeholder="Bucket"><br/>
+
+	<div id="endpoint-wrapper">
+		<label for="endpoint">Endpoint</label><br/>
+		<input type="text" id="endpoint" name="endpoint" value="{endpoint}" title="Endpoint" class="form-control input-lg"
+			placeholder="website.com or https://website.com"><br/>
+	</div>
 
 	<label for="host">Host</label><br/>
 	<input type="text" id="host" name="host" value="{host}" title="Host" class="form-control input-lg"
@@ -136,6 +143,12 @@ export MINIO_UPLOAD_PATH="path"
 				$('#region-wrapper').hide();
 			} else {
 				$('#region-wrapper').show();
+			}
+
+			if($(this).val() === "minio") {
+				$('#endpoint-wrapper').show();
+			} else {
+				$('#endpoint-wrapper').hide();
 			}
 		})
 		$('#upload-provider').change();

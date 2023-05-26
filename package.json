@@ -1,6 +1,6 @@
 {
   "name": "@dasmeta/nodebb-plugin-upload",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Upload plugin for nodebb (s3, gcs, minio)",
   "main": "index.js",
   "scripts": {
